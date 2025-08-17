@@ -7,7 +7,8 @@ FIFO stands for "First-In, First-Out." It is a type of data structure or buffer 
 
 Async FIFO, or Asynchronous FIFO, is a FIFO buffer where the read and write operations are controlled by independent clock domains. This means that the writing process and the reading process are driven by different clocks, which are not synchronized. Async FIFOs are used to safely transfer data between these asynchronous clock domains.
 
-Alt Text
+<img width="521" height="181" alt="image" src="https://github.com/user-attachments/assets/52961465-fd52-4043-87ee-171e84f4fdaa" />
+
 Async FIFOs are used in various applications where data needs to be transferred between two parts of a system that operate on different clock frequencies. Some common use cases include:
 
 Interfacing between different clock domains: For example, transferring data between a high-speed processing unit and a slower peripheral.
