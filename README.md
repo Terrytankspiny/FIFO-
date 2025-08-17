@@ -18,7 +18,8 @@ Bridging clock domains: In FPGA designs and other digital circuits where subsyst
 Design Space Exploration and Design Strategies
 The block diagram of async. FIFO that is implemented in this repo is given below. Thin lines represent single bit signal where as thisck lines represent multi-bit signal.
 
-Alt Text
+<img width="1280" height="656" alt="image" src="https://github.com/user-attachments/assets/63f4afb2-11e5-4c80-824b-e85c612f9796" />
+
 
 Read and Write Operations
 Operations
@@ -70,27 +71,32 @@ wptr_empty.v: This modlue consist of the logic for the Write pointer handler. It
 FIFO.v
 ./Verilog_code/FIFO.v is the code of this module. This module is a FIFO implementation with configurable data and address sizes. It consists of a memory module, read and write pointer handling modules, and read and write pointer synchronization modules. The read and write pointers are synchronized to the respective clock domains, and the read and write pointers are checked for empty and full conditions, respectively. The FIFO memory module stores the data and handles the read and write operations.The RTL schematics of this module is given below.
 
-Alt Text
+<img width="1547" height="430" alt="image" src="https://github.com/user-attachments/assets/3bc09025-65f3-45f5-bc50-5777f684268a" />
+
 
 FIFO_memory.v
 ./Verilog_code/FIFO_memory.v is the code of this module. The module has a memory array (mem) with a depth of 2^ADDR_SIZE. The read and write addresses are used to access the memory array. The write clock enable (wclk_en) and write full (wfull) signals are used to control the writing process. The write data is stored in the memory array on the rising edge of the write clock (wclk). The RTL schematics of this module is given below.
 
-Alt Text
+<img width="998" height="318" alt="image" src="https://github.com/user-attachments/assets/3efcea6d-d60a-4d88-a084-cf8687a271c6" />
+
 
 two_ff_sync.v
 ./Verilog_code/two_ff_sync.v is the code of this module. The module has two flip-flops, q1 and q2, which store the input data (din) of size SIZE. On each clock cycle, the data is shifted from q1 to q2, and new data is loaded into q1. The reset signal (rst_n) is active low, meaning the FIFO is reset when rst_n is low. The RTL schematics of this module is given below.
 
-Alt Text
+<img width="728" height="273" alt="image" src="https://github.com/user-attachments/assets/9de77059-a0ba-4d04-b911-2827e0bf42ee" />
+
 
 rptr_empty.v
 ./Verilog_code/rprt_empty.v is the code of this module. The module implements a read pointer for a FIFO with an empty flag. The read pointer is implemented in grey code to avoid glitches when transitioning clock domains. The read pointer is incremented based on the read increment signal and the empty flag. The empty flag is set when the read pointer is equal to the write pointer, indicating that the FIFO is empty. The read pointer and empty flag are updated on each clock cycle, and the read address is calculated from the read pointer. The RTL schematics of this module is given below.
 
-Alt Text
+<img width="1542" height="572" alt="image" src="https://github.com/user-attachments/assets/bb704221-a771-4955-99cd-118a2d5c2b5f" />
+
 
 wptr_full.v
 ./Verilog_code/wprt_full.v is the code of this module. The module implements a write pointer for a FIFO with a full flag. The write pointer is implemented in gray code to avoid glitches when transitioning between clock domains. The write pointer is incremented based on the write increment signal and the full flag. The full flag is set when the write pointer is equal to the read pointer, indicating that the FIFO is full. The write pointer and full flag are updated on each clock cycle, and the write address is calculated from the write pointer. The RTL schematics of this module is given below.
 
-Alt Text
+<img width="1545" height="545" alt="image" src="https://github.com/user-attachments/assets/7a01d7c0-a3ef-4353-9781-019adc2cada2" />
+
 
 Testbench Case Implementation
 ./Verilog_code/FIFO_tb.v is the code of this module. The testbench for the FIFO module generates random data and writes it to the FIFO, then reads it back and compares the results. The testbench includes three test cases:-
@@ -101,11 +107,14 @@ Read data from an empty FIFO and try to read more data.
 The testbench uses clock signals for writing and reading, and includes reset signals to initialize the FIFO. The testbench finishes after running the test cases.
 
 Waveforms
-Alt Text
+<img width="1572" height="507" alt="image" src="https://github.com/user-attachments/assets/94f652c2-209e-4ae6-a733-836b69dcba4b" />
 
-Alt Text
 
-Alt Text
+<img width="1575" height="515" alt="image" src="https://github.com/user-attachments/assets/f765974d-0234-4f3c-8a1e-ae7ff946c166" />
+
+
+<img width="1277" height="516" alt="image" src="https://github.com/user-attachments/assets/3ec98131-a44c-4130-af5d-da03e7f27076" />
+
 
 Results
 The asynchronous FIFO design was tested using a testbench. The following key results were observed:-
